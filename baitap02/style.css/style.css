@@ -1,0 +1,27 @@
+.form{
+    border: 4px solid rgba(103,151,174,255);
+    margin:auto;
+    padding-right: 0;
+}
+.title{
+color: rgba(139,36,36,255);
+border-left: 5px solid rgba(139,36,36,255);
+padding-left: 5px;
+margin-top: 15px;
+margin-bottom: 15px;
+}
+h6{
+text-decoration: none;
+text-transform: uppercase;
+padding:10px
+}
+#container-2{
+margin-top: 50px;
+}
+.icon{
+padding:3px;
+}
+.icon i{
+color: rgba(148,57,54,255);
+margin-left: 10px;
+}
