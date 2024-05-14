@@ -1,0 +1,50 @@
+body{
+    font-family: Roboto;
+}
+.top-div{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    row-gap: 45px;
+}
+.top-div div{
+    flex-basis: 30%;
+    max-width: 430px;
+}
+img{
+    width: 420px;
+    height: 180px;
+}
+h2 {
+    margin-left: -8px;
+    font-size: 14px;
+}
+h1{
+color: rgba(139,36,36,255);
+border-left: 5px solid rgba(139,36,36,255);
+padding-left: 5px;
+margin: 0 0 20px 0;
+font-size: 26px;
+}
+h2{
+text-decoration: none;
+text-transform: uppercase;
+padding:10px
+}
+
+.bot-div{
+display: flex;
+margin-top: 50px;
+}
+.icon{
+padding:3px;
+}
+.icon i{
+color: rgba(148,57,54,255);
+margin-left: 10px;
+}
+i {
+    transform: translateY(5px);
+    color: brown;
+    margin-right: 5px;
+}
