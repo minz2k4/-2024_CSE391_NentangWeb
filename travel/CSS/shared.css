@@ -1,0 +1,97 @@
+body{
+    font-family: 'quicksand',sans-serif;
+    margin:0;
+    
+}
+
+/* HEADER */
+header{
+   display: flex; 
+   justify-content: space-between;
+   
+}
+
+#logo{
+/* background-color: rgb(7,83,83); */
+width:30%;
+}
+
+#logo a{
+/* background-color: rgb(142,20,161); */
+padding: 50px;
+color:rgb(245,243,160);
+font-size: 3.0rem;
+text-decoration: none;
+text-transform: uppercase;
+font-family: "Oleo Script", system-ui;
+font-weight: 400;
+font-style: normal;
+text-shadow: 1px 1px 2px rgb(0,0,0);
+}
+nav{
+    /* background-color: rgb(122,122,16); */
+    width: 15%;
+    display:flex;
+}
+
+nav ul{
+    margin: 0;
+    padding:0;
+    list-style: none;
+    display:flex;
+    align-items: center;
+}
+nav ul a{
+    text-decoration: none;
+    color: rgb(255,251,0);
+    font-size: 20px;
+    padding: 12px;
+    text-shadow:1px 1px 2px rgb(0,0,0.8);
+    border-radius: 6px;
+}
+nav ul li{
+    margin-right: 20px;
+}
+
+nav ul a:hover{
+    color:black;
+    background-color: rgb(255,251,0);
+    text-shadow: 1px 1px 2px rgb();
+}
+
+
+/* CSS HERO */
+
+#hero{
+    background-image: url("../images/ocean.jpg");
+    background-position: center;
+    background-size: cover;
+    height: 800px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#hero-content{
+    width: 900px;
+    background-color: rgb(22, 77, 60);
+    box-shadow: 2px 4px 8px rgb(152, 197, 75);
+    border-radius: 10px;
+    text-align: center;
+    padding: 50px 0;
+    color: white;
+    text-transform: uppercase;
+
+}
+#hero-content h1{
+    font-size: 50px;
+    color: aliceblue;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+
+}
+#hero-content p{
+    font-size: 24px;
+    font-weight: 300;
+     margin-bottom: 30px;
+
+}
