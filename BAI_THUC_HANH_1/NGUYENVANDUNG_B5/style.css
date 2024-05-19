@@ -1,0 +1,129 @@
+body{
+    font-family: Nunito;
+    border: 2px solid #155F82;
+}
+header{
+    display: flex;
+    justify-content: space-between;
+    background-color: #F5F5F5;
+    box-shadow: 0 5px 10px lightgray;
+    margin-bottom: 20px;
+    height: 30px;
+    padding: 7px 12px;
+}
+.header-p, .search-container{
+    display: flex;
+    align-items: center;
+}
+.header-p{
+    column-gap: 12px;
+}
+.header-p p{
+    font-size: 10px;
+    font-weight: bold;
+}
+.header-p p:nth-child(1){
+    font-size: 18px !important;
+    font-weight: normal !important;
+}
+.header-p p:nth-child(2){
+    color: gray;
+}
+.search-container input{
+    height: 30px;
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 0 10px;
+}
+.search-container input[type="text"]{
+    padding-left: 10px;
+    border-color: lightgray;
+}
+.search-container input[type="submit"]{
+    border-color: green;
+    color: green;
+    background-color: #F5F5F5;
+}
+.search-container{
+    column-gap: 7px;
+}
+.table-header{
+    background-color: #435D7D;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 3px;
+    align-items: center;
+    padding: 0 20px;
+}
+.table-header p{
+    color: white;
+    font-weight: bold;
+}
+.table-header button{
+    display: inline-flex;
+    align-items: center;
+    font-size: 10px;
+    border: none;
+    border-radius: 2px;
+    color: white;
+    padding: 5px 10px;
+}
+.table-header button i{
+    font-size: 16px !important;
+    margin-right: 3px;
+}
+.table-header button:nth-child(1){
+    background-color: #DC3545;
+    margin-right: 3px;
+}
+.table-header button:nth-child(2){
+    background-color: #28A745;
+}
+table{
+    border-collapse: collapse;
+    width: 100%;
+}
+tr{
+    border-top: 1px solid lightgray;
+}
+table tr:nth-child(1) td{
+    padding: 20px 10px;
+    font-weight: bold;
+}
+td{
+    padding: 10px 10px;
+}
+.table-container{
+    padding: 10px 20px;
+}
+td i:nth-child(1){
+    color: #FFC412;
+}
+td i:nth-child(2){
+    color: #F45549;
+}
+.paging{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    color: #155F82;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+.paging div{
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    color: gray;
+}
+.paging div button{
+    background-color: white;
+    border: none;
+    color: gray;
+    height: 30px;
+    width: 30px;
+}
+.paging div button:nth-child(4){
+    background-color: #03A9F4;
+    border-radius: 3px;
+}
