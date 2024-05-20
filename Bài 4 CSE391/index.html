@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Information Form</title>
+    <!-- Thêm CSS và JavaScript nếu cần -->
+</head>
+<body>
+<form action="/submit-form" method="post">
+    <!-- Basic Info Section -->
+    <fieldset>
+        <legend>Basic info</legend>
+        <label >Mã Nhân Viên:</label>
+        <input value="9"><br>
+
+        <label for="last-name">Họ:</label>
+        <input type="text" id="last-name" name="last_name" value="Dodsworth"><br>
+
+        <label for="first-name">Tên:</label>
+        <input type="text" id="first-name" name="first_name" value="Anne"><br>
+
+        <label>Giới Tính:</label>
+        <input type="radio" id="gender-male" name="gender" value="male">
+        <label for="gender-male">Nam</label>
+        <input type="radio" id="gender-female" name="gender" value="female">
+        <label for="gender-female">Nữ</label>
+        <input type="radio" id="gender-xxx" name="gender" value="xxx">
+        <label for="gender-xxx">XXX</label><br>
+
+        <!-- Các trường khác... -->
+    </fieldset>
+
+    <!-- Contact Info Section -->
+    <fieldset>
+        <legend>Thông Tin Liên Lạc</legend>
+        <!-- Các trường thông tin liên lạc... -->
+    </fieldset>
+
+    <!-- Optional Info Section -->
+    <fieldset>
+        <legend>Thông Tin Tùy Chọn</legend>
+        <!-- Các trường thông tin tùy chọn... -->
+    </fieldset>
+
+    <!-- Human Verification Section -->
+    <fieldset>
+        <legend>Xác Minh Con Người</legend>
+        <label for="captcha">Mã CAPTCHA:</label>
+        <input type="text" id="captcha" name="captcha" required><br>
+    </fieldset>
+
+    <input type="submit" value="Gửi">
+    <input type="reset" value="Hủy">
+</form>
+</body>
+</html>

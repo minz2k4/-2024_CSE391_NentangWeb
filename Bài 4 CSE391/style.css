@@ -1,0 +1,20 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+label, input, select, textarea {
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+input[type="text"], select, textarea {
+    width: 95%;
+}
+.section {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 10px;
+}
+.submit-btn {
+    margin-top: 20px;
+}

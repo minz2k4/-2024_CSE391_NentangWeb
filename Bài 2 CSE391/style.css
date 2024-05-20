@@ -1,0 +1,11 @@
+#page-logo h1{
+    color: #cc0101;
+/*    thay doi mau chu */
+    border-left: #cc0101 solid 5px ;
+    padding-left: 5px;
+}
+#main-content1 li{
+    display: flex;
+    flex-direction:column-reverse ;
+
+}
