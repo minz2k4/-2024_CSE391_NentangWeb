@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ứng dụng quản lý sinh viên</title>
+    <link rel="stylesheet" href="./bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <style>
+        .btn-success{
+            position:relative;
+            top:10px;
+        }
+        body h2 {
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar bg-body-tertiary py-2">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <img src="./Logo_Thuy_Loi.jpg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+            Thêm sinh viên
+          </a>
+        </div>
+    </nav>
+    <form action="" class="formSinhVien" id="formSinhVien">
+        <div class="container">
+            <label for="HoTen" class="form-label">Họ và tên:</label>
+            <input type="text" id="HoTen" class="form-control" placeholder="..." required>
+            <label for="MSV" class="form-label">Mã sinh viên:</label>
+            <input type="text" id="MSV" class="form-control" placeholder="..." required>
+            <label for="date" class="form-label">Ngày sinh:</label>
+            <input type="date" id="date" class="form-control"  required>
+            <label for="Lop" class="form-label">Lớp:</label>
+            <input type="text" id="Lop" class="form-control" placeholder="..." required>
+            
+            <button type="submit" class="btn btn-success">Thêm</button>
+        </div>
+    </form>
+        <div class="container">
+            <h2 class="text p-3">Danh sách sinh viên</h2>
+            <table class="table table-hover" id="bangSinhVien">
+                <thead>
+                    <tr>
+                        <th scope="col">STT</th>
+                        <th scope="col">Họ tên</th>
+                        <th scope="col">MSV</th>
+                        <th scope="col">Ngày sinh</th>
+                        <th scope="col">Lớp</th>
+                        <th scope="col">Hành động</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    <script src="./app.js"></script>
+</body>
+</html>
