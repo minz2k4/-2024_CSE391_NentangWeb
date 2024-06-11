@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ứng dụng quản lý sinh viên</title>
+    <style>
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid #ddd; padding: 8px; }
+        input[type=text], input[type=date] { width: 100%; padding: 8px; }
+        button { padding: 8px 16px; background-color: #4CAF50; color: white; border: none; cursor: pointer; }
+        button:hover { background-color: #45a049; }
+    </style>
+</head>
+<body>
+
+<h2>Thêm sinh viên</h2>
+<form id="formSinhVien">
+    Họ tên: <input type="text" id="hoTen" required><br><br>
+    Mã SV: <input type="text" id="maSV" required><br><br>
+    Ngày sinh: <input type="date" id="ngaySinh" required><br><br>
+    Lớp: <input type="text" id="lop" required><br><br>
+    <button type="submit">Thêm</button>
+</form>
+
+<h2>Danh sách sinh viên</h2>
+<table id="bangSinhVien">
+    <tr>
+        <th>Họ tên</th>
+        <th>Mã SV</th>
+        <th>Ngày sinh</th>
+        <th>Lớp</th>
+        <th>Hành động</th>
+    </tr>
+</table>
+
+<script>
+    document.getElementById("formSinhVien").addEventListener("submit", function(event) {
+        event.preventDefault(); 
+
+        const hoTen = document.getElementById("hoTen").value;
+        const maSV = document.getElementById("maSV").value;
+        const ngaySinh = document.getElementById("ngaySinh").value;
+        const lop = document.getElementById("lop").value;
+
+        if (!hoTen || !maSV || !ngaySinh || !lop) {
+            alert("Vui lòng nhập đầy đủ thông tin!");
+            return;
+        }
+
+        const sinhVien = { hoTen, maSV, ngaySinh, lop };
+        let danhSachSinhVien = JSON.parse(localStorage.getItem("danhSachSinhVien")) || [];
+        danhSachSinhVien.push(sinhVien);
+        localStorage.setItem("danhSachSinhVien", JSON.stringify(danhSachSinhVien));
+        hienThiDanhSachSinhVien();
+    });
+
+    function hienThiDanhSachSinhVien() {
+        const bangSinhVien = document.getElementById("bangSinhVien");
+        bangSinhVien.innerHTML = `
+            <tr>
+                <th>Họ tên</th>
+                <th>Mã SV</th>
+                <th>Ngày sinh</th>
+                <th>Lớp</th>
+                <th>Hành động</th>
+            </tr>
+        `;
+
+        let danhSachSinhVien = JSON.parse(localStorage.getItem("danhSachSinhVien")) || [];
+
+        danhSachSinhVien.forEach((sinhVien, index) => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${sinhVien.hoTen}</td>
+                <td>${sinhVien.maSV}</td>
+                <td>${sinhVien.ngaySinh}</td>
+                <td>${sinhVien.lop}</td>
+                <td>
+                    <button onclick="suaSinhVien(${index})">Sửa</button>
+                    <button onclick="xoaSinhVien(${index})">Xóa</button>
+                </td>
+            `;
+            bangSinhVien.appendChild(row);
+        });
+    }
+
+    function suaSinhVien(index) {
+        let danhSachSinhVien = JSON.parse(localStorage.getItem("danhSachSinhVien")) || [];
+        const sinhVien = danhSachSinhVien[index];
+        document.getElementById("hoTen").value = sinhVien.hoTen;
+        document.getElementById("maSV").value = sinhVien.maSV;
+        document.getElementById("ngaySinh").value = sinhVien.ngaySinh;
+        document.getElementById("lop").value = sinhVien.lop;
+
+        danhSachSinhVien.splice(index, 1);
+        localStorage.setItem("danhSachSinhVien", JSON.stringify(danhSachSinhVien));
+    }
+
+    function xoaSinhVien(index) {
+        if (confirm("Bạn có chắc chắn muốn xóa sinh viên này không?")) {
+            let danhSachSinhVien = JSON.parse(localStorage.getItem("danhSachSinhVien")) || [];
+            danhSachSinhVien.splice(index, 1);
+            localStorage.setItem("danhSachSinhVien", JSON.stringify(danhSachSinhVien));
+            hienThiDanhSachSinhVien();
+        }
+    }
+
+    hienThiDanhSachSinhVien();
+</script>
+
+</body>
+</html>
