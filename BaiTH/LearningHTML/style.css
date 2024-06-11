@@ -1,0 +1,89 @@
+body {
+    font-family: "Roboto", sans-serif;
+    text-align: center;
+    background-color: rgb(244, 234, 255);
+}
+header {
+    padding: 28px;
+}
+h1 {
+    color: rgb(88, 49, 196);
+    font-size: 55px;
+    font-weight: bold;
+}
+header img {
+    width: 255px;
+
+}
+
+main {
+    background-color: rgb(122, 43, 250);
+    padding: 46px;
+    width: 700px;
+    margin: 40px auto;
+    border-radius: 10px;
+    color: white;
+    font-size: 16px;
+    text-align: left;
+    box-shadow: 1px 2px 5px rgb(0 0 0 / 30%);
+}
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+h2 {
+    font-weight: bold;
+}
+li {
+    margin: 15px 0;
+    padding-left: 10px;
+    border-left: 5px solid transparent;
+}
+.extra-important {
+    color: rgb(255, 237, 177);
+    border-color: rgb(247, 209, 85);
+}
+
+a {
+    color: black;
+    background-color: rgb(255 242 175);
+    border-radius: 5px;
+    text-decoration: none;
+    padding: 2px 5px;
+}
+a:hover {
+    color: white;
+    background-color: black;
+}
+a:active {
+    background-color: rgb(112, 150, 255);
+}
+
+footer {
+    text-align: center;
+    margin-bottom: 40px;
+}
+footer p {
+    color: rgb(122, 43, 250);
+}
+/* Below link can also be selected as 'footer a' */
+.button {
+    color: white;
+    background-color: black;
+    padding: 10px 15px;
+    box-shadow: 1px 2px 5px rgb(0 0 0 / 30%);
+}
+a:hover.button {
+
+    background-color: rgb(61, 61, 61);
+}
+a:active.button {
+    color: white;
+    background-color: rgb(112, 150, 255);
+}
+#copyright {
+    margin-top: 35px;
+
+}
