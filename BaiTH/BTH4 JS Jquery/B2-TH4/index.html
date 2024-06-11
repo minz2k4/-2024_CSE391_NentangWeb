@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Quản lý sinh viên</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body class="container mx-auto p-4">
+<h2 class="text-2xl font-bold mb-4">Quản lý sinh viên</h2>
+
+<div class="mb-4">
+    <label for="lop" class="block text-gray-700 text-sm font-bold mb-2">Chọn lớp:</label>
+    <select id="lop" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></select>
+</div>
+
+<div class="mb-4">
+    <h3 class="text-xl font-bold mb-2">Danh sách sinh viên</h3>
+    <table id="bangSinhVien" class="min-w-full bg-white">
+        <thead>
+        <tr>
+            <th class="py-2">Họ tên</th>
+            <th class="py-2">Mã SV</th>
+            <th class="py-2">Ngày sinh</th>
+            <th class="py-2">Hành động</th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<h3 class="text-xl font-bold mb-2">Thêm/Sửa sinh viên</h3>
+<form id="formSinhVien">
+    <div class="mb-4">
+        <label for="hoTen" class="block text-gray-700 text-sm font-bold mb-2">Họ tên:</label>
+        <input type="text" id="hoTen" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+    </div>
+    <div class="mb-4">
+        <label for="maSV" class="block text-gray-700 text-sm font-bold mb-2">Mã SV:</label>
+        <input type="text" id="maSV" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+    </div>
+    <div class="mb-4">
+        <label for="ngaySinh" class="block text-gray-700 text-sm font-bold mb-2">Ngày sinh:</label>
+        <input type="date" id="ngaySinh" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+    </div>
+    <div class="mb-4">
+        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Lưu</button>
+    </div>
+</form>
+
+<script>
+    $(document).ready(function() {
+        // Đọc dữ liệu từ data.json và hiển thị danh sách lớp vào dropdown
+        $.getJSON("data.json", function(data) {
+            let lopOptions = data.map(lop => `<option value="${lop.tenLop}">${lop.tenLop}</option>`);
+            $("#lop").html(lopOptions.join(''));
+        });
+
+        // Xử lý sự kiện khi chọn lớp từ dropdown
+        $("#lop").change(function() {
+            let selectedLop = $(this).val();
+            $.getJSON("data.json", function(data) {
+                let sinhVienData = data.find(lop => lop.tenLop === selectedLop).sinhVien;
+                let sinhVienRows = sinhVienData.map(sv => `
+                <tr>
+                    <td class="border px-4 py-2">${sv.hoTen}</td>
+                    <td class="border px-4 py-2">${sv.maSV}</td>
+                    <td class="border px-4 py-2">${sv.ngaySinh}</td>
+                    <td class="border px-4 py-2">
+                        <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-2 rounded" onclick="editSinhVien('${sv.maSV}')">Sửa</button>
+                        <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded" onclick="deleteSinhVien('${sv.maSV}')">Xóa</button>
+                    </td>
+                </tr>
+            `);
+                $("#bangSinhVien tbody").html(sinhVienRows.join(''));
+            });
+        });
+
+        // Hàm xử lý thêm/sửa sinh viên
+        $("#formSinhVien").submit(function(event) {
+            event.preventDefault();
+            let hoTen = $("#hoTen").val();
+            let maSV = $("#maSV").val();
+            let ngaySinh = $("#ngaySinh").val();
+            let selectedLop = $("#lop").val();
+
+            if (hoTen && maSV && ngaySinh && selectedLop) {
+                $.getJSON("data.json", function(data) {
+                    let lopIndex = data.findIndex(lop => lop.tenLop === selectedLop);
+                    let sinhVienIndex = data[lopIndex].sinhVien.findIndex(sv => sv.maSV === maSV);
+
+                    if (sinhVienIndex > -1) {
+                        // Sửa sinh viên
+                        data[lopIndex].sinhVien[sinhVienIndex] = { hoTen, maSV, ngaySinh };
+                    } else {
+                        // Thêm sinh viên mới
+                        data[lopIndex].sinhVien.push({ hoTen, maSV, ngaySinh });
+                    }
+
+                    $.ajax({
+                        url: "save.php",
+                        method: "POST",
+                        data: { data: JSON.stringify(data) },
+                        success: function() {
+                            $("#lop").change(); // Refresh the table
+                            $("#formSinhVien")[0].reset();
+                        }
+                    });
+                });
+            } else {
+                alert("Vui lòng nhập đầy đủ thông tin!");
+            }
+        });
+
+        // Hàm xử lý xóa sinh viên
+        window.deleteSinhVien = function(maSV) {
+            if (confirm("Bạn có chắc chắn muốn xóa sinh viên này?")) {
+                let selectedLop = $("#lop").val();
+                $.getJSON("data.json", function(data) {
+                    let lopIndex = data.findIndex(lop => lop.tenLop === selectedLop);
+                    data[lopIndex].sinhVien = data[lopIndex].sinhVien.filter(sv => sv.maSV !== maSV);
+
+                    $.ajax({
+                        url: "save.php",
+                        method: "POST",
+                        data: { data: JSON.stringify(data) },
+                        success: function() {
+                            $("#lop").change(); // Refresh the table
+                        }
+                    });
+                });
+            }
+        }
+
+        // Hàm xử lý chỉnh sửa sinh viên
+        window.editSinhVien = function(maSV) {
+            let selectedLop = $("#lop").val();
+            $.getJSON("data.json", function(data) {
+                let sinhVien = data.find(lop => lop.tenLop === selectedLop).sinhVien.find(sv => sv.maSV === maSV);
+                $("#hoTen").val(sinhVien.hoTen);
+                $("#maSV").val(sinhVien.maSV);
+                $("#ngaySinh").val(sinhVien.ngaySinh);
+            });
+        }
+    });
+</script>
+</body>
+</html>
